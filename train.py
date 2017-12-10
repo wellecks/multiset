@@ -38,7 +38,7 @@ parser.add_argument('--hidden-size', type=int, default=128)
 parser.add_argument('--lr', type=float, default=0.001)
 parser.add_argument('--dataset-size', type=int, default=70000)
 
-parser = util.add_mutually_exclusive_group(parser, ['mnist-custom', 'coco-easy', 'coco-medium', 'voc'])
+parser = util.add_mutually_exclusive_group(parser, ['mnist-multi', 'coco-easy', 'coco-medium', 'voc'])
 opts = util.setup(parser.parse_args())
 
 np.random.seed(opts['seed'])
@@ -47,7 +47,7 @@ if opts['use_cuda']:
     th.cuda.manual_seed_all(opts['seed'])
 
 # Load dataset
-if opts['mnist_custom']:
+if opts['mnist_multi']:
     trainset, testset = datasets.load_mnist_multi(opts['dataset_path'] + '.npz',
                                                   opts['dataset_path'] + '_labels.npz',
                                                   opts['dataset_path'] + '_bbox.npz',
